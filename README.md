@@ -3,9 +3,8 @@
 author: Roberta de Vito, Ruggero Bellio
 
 
-[go to section1](#Fitting a MSFA model via the ECM Algorithm)
 
-## Fitting a MSFA model via the ECM Algorithm
+## 1. Fitting a MSFA model via the ECM Algorithm
 
 The following example illustrates how to fit a MSFA model via the ECM Algorithm, 
 using a data set available in the Bioconductor repository (www.bioconductor.org). 
@@ -45,7 +44,7 @@ heatmap.2(mle$Phi,dendrogram='none', Rowv=FALSE, Colv=FALSE,trace='none', densit
 ```
 
 ---
- ## Bayesian Analysis of a MSFA model
+ ## 2. Bayesian Analysis of a MSFA model
 author: "Roberta de Vito, Ruggero Bellio"
 
 
