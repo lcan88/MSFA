@@ -2,9 +2,9 @@
 
 author: Roberta de Vito, Ruggero Bellio
 
-Fits the Multi-Study Factor Analysis model  via 1. ECM algorithm and via 2. a Bayesian approach.
+Fits the Multi-Study Factor Analysis model  via  [ECM algorithm](#1-fitting-a-msfa-model-via-the-ecm-algorithm) and via  [a Bayesian approach](#2-bayesian-analysis-of-a-msfa-model).
 
-## 1. Fitting a MSFA model via the ECM Algorithm
+## 1 Fitting a MSFA model via the ECM Algorithm
 
 The following example illustrates how to fit a MSFA model via the ECM Algorithm, 
 using a data set available in the Bioconductor repository (www.bioconductor.org). 
@@ -44,7 +44,7 @@ heatmap.2(mle$Phi,dendrogram='none', Rowv=FALSE, Colv=FALSE,trace='none', densit
 ```
 
 ---
- ## 2. Bayesian Analysis of a MSFA model
+ ## 2 Bayesian Analysis of a MSFA model
 author: "Roberta de Vito, Ruggero Bellio"
 
 
