@@ -60,5 +60,5 @@ De Vito, R., Bellio, R., Trippa, L. and Parmigiani, G. (2016). Multi-study Facto
 arXiv:1611.06350. \url{https://arxiv.org/abs/1611.06350}
 
 Pison, G., Rousseeuw, P.J., Filzmoser, P. and Croux, C. (2003). Robust factor analysis. Journal
-Multivariate Analysis, 84, 145-172.
+of Multivariate Analysis, 84, 145-172.
 }

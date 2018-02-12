@@ -103,18 +103,16 @@ start_msfa <- function(X_s, k, j_s, block_lower = TRUE, method = "adhoc", robust
      X <- Reduce(rbind, X_used_s)
      X.pcr <- prcomp(X)
      Phi <- matrix(X.pcr$rotation[,1:k], nrow=p, ncol=k, byrow=FALSE)
-     #totvar <- sum(X.pcr$sdev[1:k])
      if (block_lower) Phi[upper.tri(Phi)] <- 0
      for(s in 1:S){
-     #   Xscaled.s <- statmod::matvec(X_s[[s]], rep(1 / totvar, p))
-     iniLS <- array(prcomp(X_used_s[[s]])$rotation, dim=c(p, j_s[s]))
-     iniTot <- cbind(Phi, iniLS)
-     if (block_lower) iniTot[upper.tri(iniTot)] <- 0
-     Lambda_s[[s]] <-  matrix(iniTot[,(k+1):(k+j_s[s])], p , j_s[s])
-     Psi_s[[s]] <- diag(fa(X_used_s[[s]], nfactors = k+j_s[s])$uniq)
-     }
+       iniLS <- array(prcomp(X_used_s[[s]])$rotation, dim=c(p, j_s[s]))
+       iniTot <- cbind(Phi, iniLS)
+       if (block_lower) iniTot[upper.tri(iniTot)] <- 0
+       Lambda_s[[s]] <-  matrix(iniTot[,(k+1):(k+j_s[s])], p , j_s[s])
+       Psi_s[[s]] <- diag(fa(X_used_s[[s]], nfactors = k+j_s[s])$uniq)
+      }
   }
- #### method "fa" is still temporary, since the loading sign should be post-processed before taking the mean
+ #### it is importat to post-process the output for avoiding sign changes
  if(method=="fa"){
       est <- ecm_fa(X_s, tot_s = k + j_s, robust = robust, mcd = mcd, corr = corr, tol = 10^-5, nIt = 5000)
       Phi <- est$Omega_s[[1]][,1:k] / S
@@ -290,7 +288,7 @@ vcov_msfa <- function(X_s, param, getgrad = TRUE)
 #' @references De Vito, R., Bellio, R., Trippa, L. and Parmigiani, G. (2016). Multi-study Factor Analysis,
 #' arXiv:1611.06350. \url{https://arxiv.org/abs/1611.06350}
 #' @references Pison, G., Rousseeuw, P.J., Filzmoser, P. and Croux, C. (2003). Robust factor analysis. Journal
-#' Multivariate Analysis, 84, 145-172.
+#' of Multivariate Analysis, 84, 145-172.
 ecm_msfa <- function(X_s, start = NULL, nIt = 50000, tol = 10^-10, block_lower = TRUE, robust = FALSE,
                      corr = TRUE, mcd = FALSE, trace = TRUE)
 {
@@ -397,7 +395,7 @@ ecm_msfa <- function(X_s, start = NULL, nIt = 50000, tol = 10^-10, block_lower =
   a <- (l1 - l0)/ (l0-lm1)
   l_stop <- lm1 + (1/ (1-a)) * (l0-lm1)
   l0 <- loglik_ecm(Sig_s1,  ds_s, n_s, cov_s)
-  if((trace) & (i %% 100 == 0))  cat("i=", i, "Criterion for convergence ", abs(l_stop-l_stop0),  "\n")
+  if((trace) & (i %% 1000 == 0))  cat("i=", i, "Criterion for convergence ", abs(l_stop-l_stop0),  "\n")
   if((abs(l_stop-l_stop0)<tol) & i > 1 & l_stop != Inf) break
   Psi_s <- Psi_new
   Phi <- Phi_new
@@ -408,16 +406,6 @@ ecm_msfa <- function(X_s, start = NULL, nIt = 50000, tol = 10^-10, block_lower =
   l_stop0 <- l_stop
  }
   ############return output
-  # part1 <- c()
-  # part2 <- c()
-  # tot_s <- j_s + k
-  # for(s in 1:S){
-  #   part1[s] <- c(j_s[s] * p)
-  #   part2[s] <- c((tot_s[s] * (tot_s[s] - 1)) / 2)
-  # }
-  # sum1 <- k * p + sum(part1) + p * S
-  # sum2 <- sum(part2) - (k * (k - 1)) / 2
-  # npar <- (sum1  - sum2)
   n_tot <- sum(n_s)
   npar <- p * S + k * (p - ( k - 1) / 2) +  sum(j_s * (p - k - (j_s - 1) / 2))
   AIC <- -2 * l1 + npar * 2
