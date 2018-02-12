@@ -2,7 +2,7 @@
 
 author: Roberta de Vito, Ruggero Bellio
 
-
+Fits the Multi-Study Factor Analysis model  via 1. ECM algorithm and via 2. a Bayesian approach.
 
 ## 1. Fitting a MSFA model via the ECM Algorithm
 
