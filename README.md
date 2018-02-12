@@ -45,7 +45,6 @@ heatmap.2(mle$Phi,dendrogram='none', Rowv=FALSE, Colv=FALSE,trace='none', densit
 
 ---
  ## 2 Bayesian Analysis of a MSFA model
-author: "Roberta de Vito, Ruggero Bellio"
 
 
 The following example illustrates a Bayesian analysis of a MSFA model.
