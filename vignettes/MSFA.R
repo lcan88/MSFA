@@ -4,9 +4,9 @@ data(data_immune)
 help(data_immune)
 
 ## ---- starting values, messages = FALSE----------------------------------
-start_value <- start_msfa(X_s = data_immune, k = 4, j_s = c(2, 3))
+start_value <- start_msfa(X_s = data_immune, k = 3, j_s = c(3, 4))
 
-## ---- get estimate, results = FALSE, cache = TRUE, cache.path="cache/"----
+## ---- get estimate, results = FALSE--------------------------------------
 mle <-  ecm_msfa(data_immune, start_value, trace = FALSE)
 
 ## ---- heatmap, fig.show = 'hold', fig.width = 7.5, fig.height = 6.5, message = FALSE----
