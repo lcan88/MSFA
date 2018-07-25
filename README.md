@@ -26,7 +26,7 @@ Then we get suitable starting values for model parameters, selecting $K=3$ commo
 factors and $3, 4$ study-specific factors for the two studies, respectively.
 
 ```{r, starting values, messages = FALSE}
-start_value <- start_msfa(X_s = data_immune, k = 4, j_s = c(2, 3))
+start_value <- start_msfa(X_s = data_immune, k = 3, j_s = c(3, 4))
 ```
 
 ## Fitting the model via ECM
