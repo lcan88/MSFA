@@ -1,6 +1,6 @@
 # MSFA
 
-author: Roberta de Vito, Ruggero Bellio
+author: Roberta De Vito, Ruggero Bellio
 
 Fits the Multi-Study Factor Analysis model  via  [ECM algorithm](#1-fitting-a-msfa-model-via-the-ecm-algorithm) and via  [a Bayesian approach](#2-bayesian-analysis-of-a-msfa-model).
 
@@ -22,8 +22,8 @@ help(data_immune)
 ```
 
 ## Obtaining suitable starting values for model parameters
-Then we get suitable starting values for model parameters, selecting $K=4$ common
-factors and $2, 3$ study-specific factors for the two studies, respectively.
+Then we get suitable starting values for model parameters, selecting $K=3$ common
+factors and $3, 4$ study-specific factors for the two studies, respectively.
 
 ```{r, starting values, messages = FALSE}
 start_value <- start_msfa(X_s = data_immune, k = 4, j_s = c(2, 3))
