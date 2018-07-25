@@ -22,8 +22,8 @@ help(data_immune)
 ```
 
 ## Obtaining suitable starting values for model parameters
-Then we get suitable starting values for model parameters, selecting $K=3$ common
-factors and $3, 4$ study-specific factors for the two studies, respectively.
+Then we get suitable starting values for model parameters, selecting K=3 common
+factors and (3, 4) study-specific factors for the two studies, respectively.
 
 ```{r, starting values, messages = FALSE}
 start_value <- start_msfa(X_s = data_immune, k = 3, j_s = c(3, 4))
